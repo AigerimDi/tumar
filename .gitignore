@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+.next/
+dist/
+out/
+target/
+.anchor/
+test-ledger/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Hosting / infra link files
+.vercel/
+
+# OS noise
+.DS_Store
+*.log
+
+# Local model weights (multi-GB QVAC downloads - never commit)
+*.dmg
+*.gguf
+*.bin
+
+# Editor scratch
+.idea/
+.vscode/
+*.swp
+
+# Editor / IDE config (not for public repo)
+.claude/

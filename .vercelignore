@@ -1,0 +1,28 @@
+# Workspace components Vercel doesn't need (web app only).
+# The 4.2 GB upload before this file existed was 99% apps/family/dist.
+
+# Electron desktop app - not deployed via Vercel
+apps/family
+
+# Anchor / Solana program build artifacts (the .so binary stays in repo
+# under programs/tumar/target/deploy/ but Vercel's web build doesn't need it)
+programs
+
+# Build output dirs that pnpm/Next.js regenerate
+**/target
+**/dist
+**/out
+**/.next
+
+# Big binary artifacts that shouldn't ship to a Next.js bundle
+*.dmg
+*.so
+
+# Local-only
+.env.local
+.DS_Store
+
+# Vercel auto-ignores these but be explicit for clarity
+**/node_modules
+.git
+.vercel

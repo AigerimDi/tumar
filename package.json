@@ -1,0 +1,19 @@
+{
+  "name": "tumar",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@9.12.0",
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm --filter web build",
+    "lint": "pnpm --filter web lint",
+    "program:build": "anchor build",
+    "program:deploy": "anchor deploy"
+  },
+  "pnpm": {
+    "overrides": {
+      "bare-events": "^2.8.2",
+      "@qvac/infer-base": "^0.4.0"
+    }
+  }
+}
