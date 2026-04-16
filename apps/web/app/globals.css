@@ -1,0 +1,360 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", "Source Serif Pro", ui-serif, Georgia, serif;
+  --font-display: "Fraunces", "Source Serif 4", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Ink - near-black to paper. Bloomberg terminal, not moody midnight. */
+  --color-ink-950: #07080a;
+  --color-ink-900: #0c0e12;
+  --color-ink-850: #12151b;
+  --color-ink-800: #181c24;
+  --color-ink-700: #2a303c;
+  --color-ink-600: #3c4352;
+  --color-ink-500: #68707d;
+  --color-ink-400: #969ca8;
+  --color-ink-300: #b6bac3;
+  --color-ink-200: #d0d4da;
+  --color-ink-100: #ececea;
+  --color-ink-50:  #f6f2ea;
+
+  /* Altyn - tight warm gold. Used sparingly as data highlight, not decoration. */
+  --color-gold-300: #e6c063;
+  --color-gold-400: #d4a73a;
+  --color-gold-500: #c8901e;
+  --color-gold-600: #9a6f15;
+
+  /* Market semantics */
+  --color-up:   #2ec27e;
+  --color-down: #e5484d;
+
+  --radius-panel: 4px;
+  --radius-pill:  2px;
+  --radius-tight: 2px;
+
+  --hairline: rgba(246, 242, 234, 0.12);
+  --hairline-strong: rgba(246, 242, 234, 0.22);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html, body {
+  background: var(--color-ink-950);
+  color: var(--color-ink-50);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01", "ss03";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+html:has(.landing), body:has(.landing) {
+  background: #fdfaf4;
+  color: #1a1410;
+  color-scheme: light;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+/* Big hard numbers - Robinhood/Bloomberg style display. */
+.num {
+  font-family: var(--font-serif);
+  font-feature-settings: "tnum", "lnum";
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+/* Warm display face - family-friendly landing. */
+.num-soft {
+  font-family: var(--font-display);
+  font-feature-settings: "tnum", "lnum", "ss01";
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  letter-spacing: -0.015em;
+  font-weight: 500;
+}
+
+.display-soft {
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+.hero-cyrillic {
+  font-family: var(--font-serif), var(--font-display);
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------------------
+ * Landing palette - warm, inviting, Kaspi-red on paper.
+ * Scoped to .landing so /terminal keeps its Bloomberg-dark look.
+ * ------------------------------------------------------------------ */
+.landing {
+  /* Warm paper stack */
+  --paper-50:  #ffffff;
+  --paper-100: #fdfaf4;
+  --paper-200: #f6efe1;
+  --paper-300: #ede3cf;
+  --paper-400: #dccdb0;
+
+  /* Warm ink (text) */
+  --coal-950: #1a1410;
+  --coal-800: #3a302a;
+  --coal-600: #6a5b50;
+  --coal-500: #8a7b70;
+  --coal-400: #ab9e93;
+  --coal-300: #cbbfb3;
+
+  /* Brand - tumar-red (Kaspi territory) */
+  --brand-100: #fce0e2;
+  --brand-300: #f5a0a7;
+  --brand-500: #e8414f;
+  --brand-600: #c9303c;
+  --brand-700: #9e2530;
+
+  /* Chart semantics - warmer than pure red/green */
+  --land-up:   #1f9d55;
+  --land-up-tint: rgba(31, 157, 85, 0.10);
+  --land-down: #d64040;
+  --land-down-tint: rgba(214, 64, 64, 0.10);
+
+  --hair: rgba(26, 20, 16, 0.09);
+  --hair-strong: rgba(26, 20, 16, 0.16);
+
+  background: var(--paper-100);
+  color: var(--coal-950);
+}
+
+.landing .card {
+  background: var(--paper-50);
+  border: 1px solid var(--hair);
+  border-radius: 18px;
+}
+
+.landing .card-inset {
+  background: var(--paper-200);
+  border: 1px solid var(--hair);
+  border-radius: 16px;
+}
+
+.landing .card-brand {
+  background: var(--brand-100);
+  border: 1px solid rgba(232, 65, 79, 0.22);
+  border-radius: 18px;
+}
+
+.landing .pill {
+  border-radius: 999px;
+}
+
+.landing ::selection {
+  background: var(--brand-500);
+  color: #ffffff;
+}
+
+.num-tab {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum", "lnum", "zero";
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Flat panels. No glass. */
+.panel {
+  background: var(--color-ink-900);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-panel);
+}
+
+.panel-inset {
+  background: var(--color-ink-850);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-panel);
+}
+
+.panel-strong {
+  background: var(--color-ink-900);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius-panel);
+}
+
+/* Grid lines for data-dense layouts */
+.grid-lines > * + * {
+  border-top: 1px solid var(--hairline);
+}
+
+.grid-lines-x > * + * {
+  border-left: 1px solid var(--hairline);
+}
+
+/* Scrollbars */
+*::-webkit-scrollbar { width: 6px; height: 6px; }
+*::-webkit-scrollbar-thumb { background: rgba(230, 227, 220, 0.12); border-radius: 0; }
+*::-webkit-scrollbar-thumb:hover { background: rgba(230, 227, 220, 0.22); }
+
+::selection { background: var(--color-gold-500); color: var(--color-ink-950); }
+
+/* Ticker scroll */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker-track {
+  animation: ticker-scroll 90s linear infinite;
+  will-change: transform;
+}
+.ticker-track:hover { animation-play-state: paused; }
+
+/* Pulse on live data tick */
+@keyframes tick-pulse {
+  0%   { background-color: transparent; }
+  20%  { background-color: rgba(46, 194, 126, 0.14); }
+  100% { background-color: transparent; }
+}
+.tick-up   { animation: tick-pulse 900ms ease-out; }
+@keyframes tick-pulse-down {
+  0%   { background-color: transparent; }
+  20%  { background-color: rgba(229, 72, 77, 0.14); }
+  100% { background-color: transparent; }
+}
+.tick-down { animation: tick-pulse-down 900ms ease-out; }
+
+/* Count-up */
+@keyframes count-rise {
+  from { opacity: 0; transform: translateY(0.12em); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.count-rise { animation: count-rise 260ms cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* Wallet adapter - stripped, terminal-flat */
+.wallet-adapter-button {
+  background: var(--color-ink-50) !important;
+  color: var(--color-ink-950) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 500 !important;
+  font-size: 12px !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  border-radius: var(--radius-pill) !important;
+  height: 32px !important;
+  padding: 0 14px !important;
+  border: 1px solid var(--color-ink-50) !important;
+  transition: none !important;
+}
+.wallet-adapter-button:hover {
+  background: var(--color-gold-400) !important;
+  border-color: var(--color-gold-400) !important;
+  color: var(--color-ink-950) !important;
+}
+.wallet-adapter-button:not([disabled]):hover { background: var(--color-gold-400) !important; }
+.wallet-adapter-modal-wrapper {
+  background: var(--color-ink-900) !important;
+  border: 1px solid var(--hairline-strong) !important;
+  border-radius: var(--radius-panel) !important;
+}
+.wallet-adapter-modal-title {
+  color: var(--color-ink-50) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+}
+.wallet-adapter-modal-list .wallet-adapter-button {
+  background: transparent !important;
+  color: var(--color-ink-50) !important;
+  border: 1px solid var(--hairline) !important;
+  border-radius: var(--radius-panel) !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  font-size: 13px !important;
+}
+.wallet-adapter-modal-list .wallet-adapter-button:hover {
+  background: var(--color-ink-850) !important;
+  border-color: var(--hairline-strong) !important;
+  color: var(--color-ink-50) !important;
+}
+
+/* ---------- Deck print mode (Chrome --print-to-pdf) ---------- */
+@media print {
+  @page {
+    size: 1280px 720px;
+    margin: 0;
+  }
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: var(--paper-100) !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .deck-print-container {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    scroll-snap-type: none !important;
+    display: block !important;
+  }
+  .deck-print-container [data-slide] {
+    width: 1280px !important;
+    height: 720px !important;
+    min-height: 0 !important;
+    max-height: 720px !important;
+    page-break-after: always;
+    break-after: page;
+    scroll-snap-align: none !important;
+    overflow: hidden !important;
+  }
+  .deck-print-container [data-slide]:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+  .deck-print-hide {
+    display: none !important;
+  }
+
+  /* Force desktop grids - Chrome print context doesn't always match md/lg breakpoints */
+  .deck-print-container .sm\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  .deck-print-container .sm\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+  .deck-print-container .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .deck-print-container .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  .deck-print-container .md\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
+  .deck-print-container .lg\:grid-cols-\[1fr_1fr\] { grid-template-columns: 1fr 1fr !important; }
+  .deck-print-container .lg\:grid-cols-\[1\.1fr_1fr\] { grid-template-columns: 1.1fr 1fr !important; }
+
+  /* Force dividers/borders that normally kick in at md/sm */
+  .deck-print-container .sm\:divide-x > * + *,
+  .deck-print-container .md\:divide-x > * + * {
+    border-left-width: 1px !important;
+    border-left-color: var(--hair) !important;
+    border-top-width: 0 !important;
+  }
+  .deck-print-container .sm\:divide-y-0 > * + *,
+  .deck-print-container .md\:divide-y-0 > * + * {
+    border-top-width: 0 !important;
+  }
+  .deck-print-container .md\:border { border-width: 1px !important; }
+  .deck-print-container .md\:border-\[var\(--hair-strong\)\] { border-color: var(--hair-strong) !important; }
+  .deck-print-container .md\:bg-\[var\(--paper-50\)\] { background-color: var(--paper-50) !important; }
+  .deck-print-container .md\:divide-\[var\(--hair\)\] > * + * { border-color: var(--hair) !important; }
+  .deck-print-container .lg\:items-start { align-items: start !important; }
+
+  /* Force desktop typography sizes */
+  .deck-print-container .sm\:text-\[72px\] { font-size: 72px !important; }
+  .deck-print-container .sm\:text-\[60px\] { font-size: 60px !important; }
+  .deck-print-container .sm\:text-\[56px\] { font-size: 56px !important; }
+  .deck-print-container .sm\:text-\[54px\] { font-size: 54px !important; }
+  .deck-print-container .sm\:text-\[44px\] { font-size: 44px !important; }
+  .deck-print-container .sm\:text-\[40px\] { font-size: 40px !important; }
+  .deck-print-container .sm\:text-\[17px\] { font-size: 17px !important; }
+  .deck-print-container .sm\:h-20 { height: 5rem !important; }
+  .deck-print-container .sm\:h-24 { height: 6rem !important; }
+  .deck-print-container .sm\:px-16 { padding-left: 4rem !important; padding-right: 4rem !important; }
+}
