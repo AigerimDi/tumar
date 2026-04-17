@@ -1,0 +1,82 @@
+/**
+ * Tumar design tokens. Single source of truth for both apps/web (Tailwind v4
+ * @theme) and apps/family (Electron + Tailwind v3 - uses :root vars).
+ *
+ * apps/web imports this via globals.css; apps/family imports it via its
+ * own index.css. Same vars, different syntax to bridge Tailwind versions.
+ */
+
+:root {
+  /* Fonts */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", "Source Serif Pro", ui-serif, Georgia, serif;
+  --font-display: "Fraunces", "Source Serif 4", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Ink - near-black to paper. Bloomberg terminal, not moody midnight. */
+  --color-ink-950: #07080a;
+  --color-ink-900: #0c0e12;
+  --color-ink-850: #12151b;
+  --color-ink-800: #181c24;
+  --color-ink-700: #2a303c;
+  --color-ink-600: #3c4352;
+  --color-ink-500: #68707d;
+  --color-ink-400: #969ca8;
+  --color-ink-300: #b6bac3;
+  --color-ink-200: #d0d4da;
+  --color-ink-100: #ececea;
+  --color-ink-50:  #f6f2ea;
+
+  /* Altyn - tight warm gold. Sparing data highlight only. */
+  --color-gold-300: #e6c063;
+  --color-gold-400: #d4a73a;
+  --color-gold-500: #c8901e;
+  --color-gold-600: #9a6f15;
+
+  /* Market semantics */
+  --color-up:   #2ec27e;
+  --color-down: #e5484d;
+
+  --radius-panel: 4px;
+  --radius-pill:  2px;
+  --radius-tight: 2px;
+
+  --hairline: rgba(246, 242, 234, 0.12);
+  --hairline-strong: rgba(246, 242, 234, 0.22);
+
+  color-scheme: dark;
+}
+
+html, body {
+  background: var(--color-ink-950);
+  color: var(--color-ink-50);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01", "ss03";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+/* Big hard numbers - Robinhood/Bloomberg style. */
+.num {
+  font-family: var(--font-serif);
+  font-feature-settings: "tnum", "lnum";
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+/* Tight tabular monospace - for data tables, addresses, kbd-like badges. */
+.num-tab {
+  font-family: var(--font-mono);
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hairline border helper. */
+.panel {
+  border: 1px solid var(--hairline);
+  background: var(--color-ink-900);
+}
+.panel-inset {
+  border: 1px solid var(--hairline-strong);
+  background: var(--color-ink-850);
+}
