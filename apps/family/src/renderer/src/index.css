@@ -1,0 +1,76 @@
+/**
+ * Renderer styles.
+ *
+ * Inlines the shared Tumar design tokens (kept in sync with
+ * packages/shared/src/design-tokens.css). PostCSS @import doesn't follow
+ * relative paths across workspaces cleanly, and this file is short enough
+ * to mirror without drift risk.
+ */
+
+:root {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Source Serif 4", "Source Serif Pro", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Ink */
+  --color-ink-950: #07080a;
+  --color-ink-900: #0c0e12;
+  --color-ink-850: #12151b;
+  --color-ink-800: #181c24;
+  --color-ink-700: #2a303c;
+  --color-ink-600: #3c4352;
+  --color-ink-500: #68707d;
+  --color-ink-400: #969ca8;
+  --color-ink-300: #b6bac3;
+  --color-ink-200: #d0d4da;
+  --color-ink-100: #ececea;
+  --color-ink-50:  #f6f2ea;
+
+  /* Altyn */
+  --color-gold-300: #e6c063;
+  --color-gold-400: #d4a73a;
+  --color-gold-500: #c8901e;
+  --color-gold-600: #9a6f15;
+
+  /* Market */
+  --color-up:   #2ec27e;
+  --color-down: #e5484d;
+
+  --hairline: rgba(246, 242, 234, 0.12);
+  --hairline-strong: rgba(246, 242, 234, 0.22);
+
+  color-scheme: dark;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  background: var(--color-ink-950);
+  color: var(--color-ink-50);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01", "ss03";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+/* macOS hidden-inset titlebar - top strip is draggable. */
+.app-drag {
+  -webkit-app-region: drag;
+}
+.app-no-drag {
+  -webkit-app-region: no-drag;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--hairline-strong);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}

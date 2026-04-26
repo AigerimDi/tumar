@@ -1,0 +1,33 @@
+appId: app.tumar.family
+productName: Tumar Family
+
+# macOS-only build per the hackathon spec - no Windows/Linux targets.
+# Apple Silicon only: QVAC's @qvac/llm-llamacpp + @qvac/transcription-whispercpp
+# rely on Metal for acceptable performance, and we don't ship x64 binaries.
+mac:
+  category: public.app-category.finance
+  target:
+    - target: dmg
+      arch:
+        - arm64
+  hardenedRuntime: false
+  gatekeeperAssess: false
+
+# Native modules from @qvac and bare-* must be unpacked from the asar archive
+# at install time - Electron can't dlopen N-API addons that live inside asar.
+asarUnpack:
+  - "node_modules/@qvac/**"
+  - "node_modules/bare-*/**"
+  - "node_modules/**/*.node"
+
+files:
+  - "out/**/*"
+  - "package.json"
+
+directories:
+  buildResources: build
+  output: dist
+
+# Don't sign for hackathon submission - the .dmg is unsigned and users will
+# need to right-click → Open to bypass Gatekeeper. Document this in README.
+publish: null
