@@ -33,3 +33,9 @@ test-ledger/
 
 # Editor / IDE config (not for public repo)
 .claude/
+
+# npm lockfile (we use pnpm)
+**/package-lock.json
+
+# TypeScript build cache
+*.tsbuildinfo
